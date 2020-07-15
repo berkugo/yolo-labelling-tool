@@ -1,5 +1,5 @@
-# annotationtool
-
+# Annotation / labeling tool for custom Yolo models, also will be available soon converting COCO or VOC labels to Yolo.
+# Built with Electron.js / Node.js
 ## Project setup
 ```
 npm install
