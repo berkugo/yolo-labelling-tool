@@ -1,7 +1,7 @@
 <template>
   <v-app-bar style="-webkit-app-region: drag;" app color="black" dense dark>
     <v-toolbar-title style="font-size: 12px;" class="red--text overline"
-      >Labelify
+      >LABELME
     </v-toolbar-title>
     <v-spacer></v-spacer>
 

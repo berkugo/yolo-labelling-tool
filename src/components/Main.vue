@@ -3,10 +3,9 @@
     <v-container fluid>
       <v-row>
         <v-col>
-          <v-col class="d-flex white--text" cols="12" sm="12">
+          <v-col class="d-flex white--text" cols="12" xssm="12">
             <v-select
               background-color="red darken-4"
-              :items="items"
               dark
               label="Outlined style"
               color="white--text"
@@ -20,20 +19,25 @@
           v-for="(item, idx) in imagesObject.images"
           :key="item"
           class="white--text"
-          md="3"
+          md="4"
           sm="6"
           xs="6"
         >
-          <v-card outlined color="red darken-4" class="mx-auto" max-width="300">
+          <v-card outlined color="red darken-4" class="mx-auto">
             <v-img
               class="black--text align-end"
-              height="150px"
+              height="300px"
               :src="'data:image/jpeg;base64,' + item"
             >
             </v-img>
 
             <v-card-actions>
-              <v-btn depressed color="white--text transparent" class="overline">
+              <v-btn
+                @click="canvasOp(idx)"
+                depressed
+                color="white--text transparent"
+                class="overline"
+              >
                 <v-icon class="ma-2 white--text" size="17px">mdi-pencil</v-icon>
                 LABEL</v-btn
               >
@@ -44,11 +48,10 @@
                 >
                 SAVE</v-btn
               >
-              <v-spacer></v-spacer>
-              <span class="caption font-weight-bold white--text">{{
-                imagesObject.fileNames[idx]
-              }}</span>
             </v-card-actions>
+            <v-card-title class="caption font-weight-bold white--text">{{
+              imagesObject.fileNames[idx]
+            }}</v-card-title>
           </v-card>
         </v-col>
       </v-row>
@@ -65,6 +68,14 @@ export default {
     fileListener(async (event, args) => {
       this.imagesObject = await readFromFolder(args[0]);
     });
+  },
+
+  methods: {
+
+    canvasOp(idx)
+    {
+      console.log(idx)
+    }
   },
   data: () => ({
     saved: false,
