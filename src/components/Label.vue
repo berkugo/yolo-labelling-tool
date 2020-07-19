@@ -99,14 +99,14 @@ export default {
     reader(sk){
     sk.mouseClicked = () => {
     if (sk.mouseButton === sk.LEFT) {
-		if(!this.recStart){			// start rectangle, give initial coords
+		if(!this.recStart){		
 			this.coords.x = sk.mouseX;
 			this.coords.y = sk.mouseY;
-			this.recStart = true;	// draw() starts to draw
+			this.recStart = true;	
 		} else {
-			this.recStart = false;	// stop draw()
+			this.recStart = false;	
       this.drawRect(sk);
-      this.coords = {};		// clear coords
+      this.coords = {};		
     
 		      }
         }
@@ -117,17 +117,17 @@ export default {
       sk.mouseClicked = () => {
       sk.clear();
       if (sk.mouseButton === sk.LEFT) {
-		if(!this.recStart){			// start rectangle, give initial coords
+		if(!this.recStart){			
 			this.coords.x = sk.mouseX;
 			this.coords.y = sk.mouseY;
-			this.recStart = true;	// draw() starts to draw
+			this.recStart = true;	
 		} else {
-			this.recStart = false;	// stop draw()
+			this.recStart = false;	
 		sk.clear();
 	  sk.noFill();
 	  sk.stroke('red');
     sk.rect(this.coords.x,this.coords.y, sk.mouseX-this.coords.x, sk.mouseY-this.coords.y);	// draw final rectangle
-      this.coords = {};		// clear coords
+      this.coords = {};		
 		 }
      }
     } 
