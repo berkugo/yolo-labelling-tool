@@ -1,7 +1,7 @@
 "use strict";
 
 const { app, protocol, Menu, BrowserWindow } = require("electron");
-const eventHandler = require("../ipc/com.js")
+const eventHandler = require("../ipc/com.js");
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 const isDevelopment = process.env.NODE_ENV !== "production";
 
@@ -11,7 +11,7 @@ let win;
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
-  { scheme: "app", privileges: { secure: true, standard: true } }
+  { scheme: "app", privileges: { secure: true, standard: true } },
 ]);
 
 function createWindow() {
@@ -25,13 +25,11 @@ function createWindow() {
       // UsepluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-lectron-builder/guide/security.html#node-integration for more info
       nodeIntegration: true,
-    }
-
+    },
   });
-  eventHandler(win)
-  win.webContents.openDevTools()
-  win.setMenu(null)
-
+  eventHandler(win);
+  win.webContents.openDevTools();
+  win.setMenu(null);
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
@@ -71,13 +69,12 @@ app.on("ready", async () => {
     // Install Vue Devtools
   }
   createWindow();
-
 });
 
 // Exit cleanly on request from parent process in development mode.
 if (isDevelopment) {
   if (process.platform === "win32") {
-    process.on("message", data => {
+    process.on("message", (data) => {
       if (data === "graceful-exit") {
         app.quit();
       }

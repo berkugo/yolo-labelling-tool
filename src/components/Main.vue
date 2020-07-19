@@ -3,7 +3,7 @@
     <v-container fluid>
       <v-row>
         <v-col>
-          <v-col class="d-flex white--text" cols="12" xssm="12">
+          <v-col class="d-flex white--text" cols="12" sm="12">
             <v-select
               background-color="red darken-4"
               dark
@@ -71,11 +71,12 @@ export default {
   },
 
   methods: {
-
-    canvasOp(idx)
-    {
-      console.log(idx)
-    }
+    canvasOp(idx) {
+      this.$router.push({
+        name: "Label",
+        params: { base64: this.imagesObject.images[idx], index: idx },
+      });
+    },
   },
   data: () => ({
     saved: false,
