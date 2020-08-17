@@ -1,10 +1,14 @@
 <template>
 <v-row>
+  
     <v-col md="8" sm="6" xs="6">
        <p class="ma-2 white--text">Realtime Coordinates {{x}},{{y}} </p>
                 <p class="ma-2 white--text">Coordinates1 {{cX1}},{{cY1}} </p>
                 <p class="ma-2 white--text">Coordinates2 {{cX2}},{{cY2}} </p>
+                <p class="ma-2 white--text">Image Width: {{width}}px </p>
+                <p class="ma-2 white--text">Image Width: {{height}}px </p>
       <v-img
+        class="img-or"
         @click="coord1"
         v-on:mousemove="updateCoords"
         contain
@@ -23,20 +27,33 @@
       </template>
       </v-img>
     </v-col>
-     <v-btn depressed color="white--text transparent" class="overline">
+     <v-btn @click="RarelyF" color="white--text transparent" class="overline">
                 <v-icon class="ma-2 white--text" size="30px"
                   >mdi-content-save</v-icon
                 >
-                SAVE</v-btn>          
+                SAVE</v-btn>  
+        <v-btn  @click="hasHistory() 
+    ? $router.go(-1) 
+    : $router.push('/')" depressed color="white--text transparent" class="overline">
+                <v-icon class="ma-2 white--text" size="30px"
+                  >mdi-arrow-left</v-icon
+                >Back
+                </v-btn> 
+           
   </v-row>
 </template>
 
 <script>
 import VueP5 from 'vue-p5';
+var img2 = new Image();
+
+
 export default {
   name: "Label",
   mounted() {
     this.base64 = this.$route.params.base64;
+    img2.src = 'data:image/jpeg;base64,' + this.base64
+    
   },
   components: {
   "vue-p5" :VueP5
@@ -49,6 +66,8 @@ export default {
     cX2:0,
     cY1:0,
     cY2:0,
+    width:"",
+    height:"",
     cor: true,
     recStart:true,
     coords : {},
@@ -56,6 +75,15 @@ export default {
 
   }),
   methods:{
+    hasHistory () { return window.history.length > 2 },
+    RarelyF: function(){
+      
+      this.width = img2.width
+      this.height = img2.height
+      console.log ("width " +  img2.width + "   height "+ img2.height)
+      
+    },
+
     coord1: function(event)
     {
       if(this.cor==true)
@@ -79,7 +107,9 @@ export default {
     },
 
     setup(sk) {
-      sk.createCanvas(400, 400);
+      //sk.background('green');
+      sk.createCanvas(img2.height/2, img2.width/2);
+      
     },
 
     draw(sk){
@@ -138,5 +168,9 @@ export default {
 </script>
 
 <style>
+.img-or{
+  height: 50%;
+  width: 50%;
+}
 
 </style>
